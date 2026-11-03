@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Management System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container my-2">
+  <h1>Student Management System</h1>
+  <a th:href="@{/showNewStudentForm}" class="btn btn-primary mb-3">Add Student</a>
+  <table class="table table-striped">
+    <thead><tr><th>Student Name</th><th>Student Email</th><th>Actions</th></tr></thead>
+    <tbody>
+      <tr th:each="student : ${listStudents}">
+        <td th:text="${student.studName}"></td>
+        <td th:text="${student.studEmail}"></td>
+        <td>
+          <a th:href="@{/showStudFormForUpdate/{sid}(sid=${student.sid})}" class="btn btn-primary">Update or Add Courses</a>
+          <a th:href="@{/deleteStudent/{sid}(sid=${student.sid})}" class="btn btn-danger">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <a th:href="@{/}">Back to Course List</a>
+</div>
+</body>
+</html>
